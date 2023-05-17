@@ -4,6 +4,14 @@ from operations import *
 
 app = Flask(__name__)
 
+@app.route('/math/<operation>')
+def math_operation(operation):
+    """ Do math on a and b"""
+    a = int(request.args["a"])
+    b = int(request.args["b"])
+    funcs = {'div':div, 'add': add, 'sub': sub, 'mult':mult}
+    return f'{funcs[operation](a,b)}'
+
 @app.route('/add')
 def add_request():
     """Handle add request"""
